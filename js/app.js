@@ -1,13 +1,15 @@
+const main = document.getElementById('main-div');
 const loadData = () => {
     const inputValue = document.getElementById('input-field').value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`
+    main.innerHTML = '';
     fetch(url)
         .then(res => res.json())
         .then(data => displayData(data.data.slice(0, 20)))
 };
 
 const displayData = (phones) => {
-    const main = document.getElementById('main-div');
+
     for (const phone of phones) {
         // console.log(phone)
         const div = document.createElement('div');
@@ -39,12 +41,15 @@ const dislayPhoneDetail = phone => {
     const phoneDetails = document.getElementById('phone-details');
     const div = document.createElement('div')
     div.innerHTML = `
-    <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+    <div class="card my-5 mx-auto text-center" style="width: 18rem;">
+    <img src="${phone.image}" class="card-img-top p-3" alt="...">
     <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-            card's content.</p>
+        <h2 class="card-title">${phone.brand}</h2>
+        <h5>${phone.name}</h5>
+        <p class="card-text">${phone.releaseDate}</p>
+        <p class="card-text">Storage: ${phone.mainFeatures.storage}</p>
+        <p class="card-text">Displaysize: ${phone.mainFeatures.displaySize}</p>
+        <p class="card-text">Sensors: ${phone.mainFeatures.sensors}</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
 </div>

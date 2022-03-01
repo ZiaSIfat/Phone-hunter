@@ -2,3 +2,6 @@
     
     grid-template-columns: repeat(1fr, 3);
 }
+.card-text{
+    font-weight: 700;
+}
