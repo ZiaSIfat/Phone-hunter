@@ -1,12 +1,22 @@
 .card{
-    
     grid-template-columns: repeat(1fr, 3);
+    border-radius: 10px;
+    border: 2px solid gray;
 }
 .card-text{
     font-weight: 700;
 }
 .error{
     display: none;
-    text-align: center;
     color: red;
+    text-align: center;
+}
+.cross{
+    height: 15px;
+    width: 15px;
+}
+.buttons{
+    background-color: rgb(141, 195, 250);
+    color: white;
+    font-weight: 500;
 }

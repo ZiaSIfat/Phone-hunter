@@ -14,9 +14,10 @@ const loadData = () => {
 const displayData = (phones) => {
 
     if (phones.length === 0) {
-        const error = document.getElementById('error');
-        error.innerText = 'NO RESULT FOUND'
+        document.getElementById('error').style.display = 'block';
     }
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.innerHTML = '';
     for (const phone of phones) {
         // console.log(phone)
         const div = document.createElement('div');
@@ -29,11 +30,11 @@ const displayData = (phones) => {
         <div class="card-body">
             <h3 class="card-title">${phone.brand}</h3>
             <h5>${phone.phone_name}</h5>
-            <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-primary">More Details</button>
+            <button onclick="loadPhoneDetail('${phone.slug}')" class="btn buttons">More Details</button>
         </div>
         `
         main.appendChild(div);
-        error.innerText = '';
+        document.getElementById('error').style.display = 'none';
     }
 }
 
@@ -57,7 +58,7 @@ const dislayPhoneDetail = phone => {
     <div class="card-body">
         <h2 class="card-title">${phone.brand}</h2>
         <h5>${phone.name}</h5>
-        <p class="card-text">Release Date: ${phone.releaseDate ? phone.releaseDate : 'Not Found'}</p>
+        <p class="card-text">Release Date: ${phone.releaseDate ? phone.releaseDate : 'Coming Soon'}</p>
         <h2 >Main Features</h2>
         <p class="card-text">Chipset: ${phone.mainFeatures.chipSet}</p>
         <p class="card-text">Memory: ${phone.mainFeatures.memory}</p>
@@ -70,9 +71,10 @@ const dislayPhoneDetail = phone => {
         <p class="card-text">Radio: ${phone.others.Radio ? phone.others.Radio : ''}</p>
         <p class="card-text">USB: ${phone.others.USB ? phone.others.USB : ''}</p>
         <p class="card-text">WLAN: ${phone.others.WLAN ? phone.others.WLAN : ''}</p>
-        <p class="card-text">Sensors: ${phone.mainFeatures.sensors}</p>
+        <p class="card-text">Sensors: ${phone.mainFeatures.sensors ? phone.mainFeatures.sensors : ''}</p>
     </div>
 </div>
     `
+
     phoneDetails.appendChild(div)
 }
