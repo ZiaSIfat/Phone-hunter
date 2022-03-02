@@ -5,10 +5,14 @@ const loadData = () => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`
     input.value = '';
     main.innerHTML = '';
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayData(data.data.slice(0, 20)));
-
+    if (!isNaN(inputValue)) {
+        document.getElementById('error-msg').style.display = 'block'
+    }
+    else {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displayData(data.data.slice(0, 20)));
+    }
 };
 
 const displayData = (phones) => {
@@ -25,7 +29,7 @@ const displayData = (phones) => {
         div.classList.add('col-sm-12');
         document.getElementById('error').style.dsiplay = 'none';
         div.innerHTML = `
-        <div class="card my-3  text-center" style="width: 18rem;">
+        <div class="card my-3 mx-auto text-center" style="width: 18rem;">
         <img src="${phone.image}" class="w-100 p-5 card-img-top" alt="...">
         <div class="card-body">
             <h3 class="card-title">${phone.brand}</h3>
@@ -35,6 +39,8 @@ const displayData = (phones) => {
         `
         main.appendChild(div);
         document.getElementById('error').style.display = 'none';
+        document.getElementById('error-msg').style.display = 'none'
+
     }
 }
 
@@ -48,7 +54,8 @@ const loadPhoneDetail = phoneId => {
 }
 
 const dislayPhoneDetail = phone => {
-    console.log(phone);
+
+    // console.log(phone);
     const phoneDetails = document.getElementById('phone-details');
     const div = document.createElement('div')
     phoneDetails.innerHTML = '';
@@ -58,20 +65,20 @@ const dislayPhoneDetail = phone => {
     <div class="card-body">
         <h2 class="card-title">${phone.brand}</h2>
         <h5>${phone.name}</h5>
-        <p class="card-text">Release Date: ${phone.releaseDate ? phone.releaseDate : 'Coming Soon'}</p>
-        <h2 >Main Features</h2>
-        <p class="card-text">Chipset: ${phone.mainFeatures.chipSet}</p>
-        <p class="card-text">Memory: ${phone.mainFeatures.memory}</p>
-        <p class="card-text">Storage: ${phone.mainFeatures.storage}</p>
-        <p class="card-text">Displaysize: ${phone.mainFeatures.displaySize}</p>
-        <h2>Others Information</h2>
-        <p class="card-text">Bluetooth: ${phone.others.Bluetooth ? phone.others.Bluetooth : ''}</p>
-        <p class="card-text">GPS: ${phone.others.GPS ? phone.others.GPS : ''}</p>
-        <p class="card-text">NFC: ${phone.others.NFC ? phone.others.NFC : ''}</p>
-        <p class="card-text">Radio: ${phone.others.Radio ? phone.others.Radio : ''}</p>
-        <p class="card-text">USB: ${phone.others.USB ? phone.others.USB : ''}</p>
-        <p class="card-text">WLAN: ${phone.others.WLAN ? phone.others.WLAN : ''}</p>
-        <p class="card-text">Sensors: ${phone.mainFeatures.sensors ? phone.mainFeatures.sensors : ''}</p>
+        <p class="card-text"><span class = "info">Release Date:</span> <span class = "text">${phone.releaseDate ? phone.releaseDate : 'No release date found'}</span></p>
+        <h2 class = "info">Main Features</h2>
+        <p class="card-text">Chipset: <span class = "text">${phone.mainFeatures.chipSet}</span></p>
+        <p class="card-text">Memory: <span class = "text">${phone.mainFeatures.memory}</span></p>
+        <p class="card-text">Storage: <span class = "text">${phone.mainFeatures.storage}</span></p>
+        <p class="card-text">Displaysize: <span class = "text">${phone.mainFeatures.displaySize}</span></p>
+        <h2 class = "info">Others Information</h2>
+        <p class="card-text">Bluetooth: <span class = "text">${phone.others?.Bluetooth ? phone.others.Bluetooth : 'No Result'}</span></p>
+        <p class="card-text">GPS: <span class = "text">${phone.others?.GPS ? phone.others.GPS : 'No Result'}</span></p>
+        <p class="card-text">NFC: <span class = "text">${phone.others?.NFC ? phone.others.NFC : 'No Result'}</span></p>
+        <p class="card-text">Radio: <span class = "text">${phone.others?.Radio ? phone.others.Radio : 'No Result'}</span></p>
+        <p class="card-text">USB: <span class = "text">${phone.others?.USB ? phone.others.USB : 'No Reuslt'}</span></p>
+        <p class="card-text">WLAN: <span class = "text">${phone.others?.WLAN ? phone.others.WLAN : 'No Result'}</span></p>
+        <p class="card-text"><span class = "info">Sensors:</span> <span class = "text">${phone.mainFeatures.sensors ? phone.mainFeatures.sensors : ''}<span></p>
     </div>
 </div>
     `

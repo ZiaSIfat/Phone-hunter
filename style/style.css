@@ -1,22 +1,48 @@
+/* boddy backround */
+.main-bg{
+    background-color: rgb(224, 232, 243);
+}
+/* heading */
+h1{
+    color: lightseagreen;
+    font-weight: 700;
+}
+/* heading logo */
+.logo{
+    height: 50px;
+    width: 50px;
+
+}
+/* card style */
 .card{
     grid-template-columns: repeat(1fr, 3);
     border-radius: 10px;
-    border: 2px solid gray;
+    border: 2px solid rgb(168, 168, 168);
 }
 .card-text{
     font-weight: 700;
 }
+.info{
+    color: rgb(255, 104, 104);
+}
+.text{
+    color: rgb(121, 121, 121);
+}
+/* error message */
 .error{
     display: none;
-    color: red;
+    color: lightseagreen;
     text-align: center;
+    font-weight: 700;
 }
 .cross{
-    height: 15px;
-    width: 15px;
+    height: 17px;
+    width: 17px;
 }
+/* buttons style */
 .buttons{
-    background-color: rgb(141, 195, 250);
+    background-color: lightseagreen;
     color: white;
     font-weight: 500;
+    border-radius:  10px;
 }
