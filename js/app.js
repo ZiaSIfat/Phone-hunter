@@ -7,6 +7,7 @@ const loadData = () => {
     main.innerHTML = '';
     if (!isNaN(inputValue)) {
         document.getElementById('error-msg').style.display = 'block'
+        document.getElementById('error').style.display = 'none';
     }
     else {
         fetch(url)
@@ -19,7 +20,9 @@ const displayData = (phones) => {
 
     if (phones.length === 0) {
         document.getElementById('error').style.display = 'block';
+        document.getElementById('error-msg').style.display = 'none'
     }
+
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.innerHTML = '';
     for (const phone of phones) {
@@ -55,7 +58,7 @@ const loadPhoneDetail = phoneId => {
 
 const dislayPhoneDetail = phone => {
 
-    // console.log(phone);
+    console.log(phone);
     const phoneDetails = document.getElementById('phone-details');
     const div = document.createElement('div')
     phoneDetails.innerHTML = '';
